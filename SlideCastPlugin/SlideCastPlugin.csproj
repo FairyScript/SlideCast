@@ -20,6 +20,12 @@
     <OutputPath>C:\Users\irann\AppData\Roaming\XIVLauncher\devPlugins\SlideCastPlugin\</OutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+	<Content Include="..\Data\SlideCastPlugin.json">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+  </ItemGroup>
+
   <PropertyGroup>
     <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
     <AssemblyVersion>0.8.0.0</AssemblyVersion>
