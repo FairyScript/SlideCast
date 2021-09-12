@@ -51,7 +51,6 @@ namespace SlideCastPlugin
         private List<byte> _cbSpell = new List<byte>();
         private Colour _colS = new Colour(0.04f, 0.8f, 1f, 1f);
         private readonly Colour _col1S = new Colour(0.04f, 0.4f, 1f, 1f);
-        private bool _debug;
         private IntPtr _castBar = IntPtr.Zero;
 
         [UnmanagedFunctionPointer(CallingConvention.ThisCall, CharSet = CharSet.Ansi)]
@@ -72,14 +71,14 @@ namespace SlideCastPlugin
             _slideTime = configuration.SlideTime;
             _slideCol = configuration.SlideCol;
 
-            initHook(sigScanner);
+            InitHook(sigScanner);
         }
 
         public void Dispose()
         {
         }
 
-        private void initHook(SigScanner sigScanner)
+        private void InitHook(SigScanner sigScanner)
         {
             var _scan1 = sigScanner.ScanText("E8 ?? ?? ?? ?? 41 b8 01 00 00 00 48 8d 15 ?? ?? ?? ?? 48 8b 48 20 e8 ?? ?? ?? ?? 48 8b cf");
             var _scan2 = sigScanner.ScanText("e8 ?? ?? ?? ?? 48 8b cf 48 89 87 ?? ?? 00 00 e8 ?? ?? ?? ?? 41 b8 01 00 00 00");
@@ -110,7 +109,6 @@ namespace SlideCastPlugin
             var tempCastBar = _getUi2ObjByName(Marshal.ReadIntPtr(_getBaseUiObj(), 0x20), "_CastBar", 1);
             if (tempCastBar == IntPtr.Zero)
             {
-                Visible = false;
                 return;
             }
 
@@ -183,11 +181,11 @@ namespace SlideCastPlugin
                 "Lower numbers make it later in the cast, higher numbers earlier in the cast.\n" +
                 "Apart from missed packets, 50cs is the exact safe time to slidecast.");
             ImGui.ColorEdit4("Bar Colour", ref _slideCol, ImGuiColorEditFlags.NoInputs);
-            ImGui.Checkbox("Enable Debug Mode", ref _debug);
+            ImGui.Checkbox("Enable Debug Mode", ref debugVisible);
             ImGui.Separator();
             if (ImGui.Button("Save and Close Config"))
             {
-                configuration.Enabled = visible;
+                configuration.Enabled = Visible;
                 configuration.SlideTime = _slideTime;
                 configuration.SlideCol = _slideCol;
                 configuration.Save();

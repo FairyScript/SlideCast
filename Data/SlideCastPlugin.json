@@ -9,7 +9,7 @@
   "Tags": ["Castbar", "UI", "Overlay", "Extension", "Casting", "Slide"],
   "IsHide": false,
   "InternalName": "Transmitter",
-  "AssemblyVersion": "0.8.0.0",
+  "AssemblyVersion": "0.8.0.1",
   "TestingAssemblyVersion": null,
   "IsTestingExclusive": false,
   "RepoUrl": "https://github.com/Haplo064/SlideCast",
